@@ -1,0 +1,50 @@
+<div *ngIf="!name; else forminfo">
+  <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+    <div class="form-container">
+      <div class="row columns">
+        <h1>Add Intent</h1>
+        <label>Intent Name
+          <input type="text" formControlName="name">
+        </label>
+        <label>Intent Name
+          <input type="text" formControlName="OutputSpeech">
+        </label>
+        <!-- <label>Intent phrases
+          <input type="text" formControlName="data">
+        </label> -->
+        <!-- 
+        <label for="validate">Minimum of 3 Characters</label>
+        <input type="checkbox" name="validate" formControlName="validate" value="1"> On -->
+
+        <!--test-->
+        <button type="button" (click)="addNewRow()" class="btn btn-primary">Add new Row</button>
+        <br> {{rForm.value | json}}
+        <br>
+        <div formArrayName="userSays">
+          <div *ngFor="let itemrow of rForm.controls.userSays.controls; let i=index" [formGroupName]="i">
+            <div class="form-group col-md-8">
+              <label>Intent phrase #{{ i + 1 }}</label>
+              <input type="text" formControlName="data" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <button *ngIf="rForm.controls.userSays.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+        <!--test-->
+
+        <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
+      </div>
+    </div>
+  </form>
+</div>
+
+<ng-template #forminfo>
+  <div class="form-container">
+    <div class="row columns">
+      <h1>{{ name }}</h1>
+
+      <p>{{ description }}</p>
+    </div>
+  </div>
+</ng-template>
