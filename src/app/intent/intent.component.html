@@ -18,7 +18,7 @@
               <div class="input-group">
                 <input class="input-group-field" type="text" formControlName="data" placeholder="Full name">
                 <span *ngIf="i != 0 " class="input-group-label">
-                  <button *ngIf="rForm.controls.userSays.controls.length > 1" (click)="deleteRow(i)" class="button alert">Delete</button>
+                  <button *ngIf="rForm.controls.userSays.controls.length > 1" (click)="deleteRow(i)" class="btn btn-info">Delete</button>
                 </span>
               </div>
             </div>
