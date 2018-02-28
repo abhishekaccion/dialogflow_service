@@ -6,7 +6,7 @@
         <label>Intent Name
           <input type="text" formControlName="name">
         </label>
-        <label>Intent Name
+        <label>Output speech
           <input type="text" formControlName="OutputSpeech">
         </label>
         <!-- <label>Intent phrases
@@ -17,18 +17,25 @@
         <input type="checkbox" name="validate" formControlName="validate" value="1"> On -->
 
         <!--test-->
-        <button type="button" (click)="addNewRow()" class="btn btn-primary">Add new Row</button>
-        <br> {{rForm.value | json}}
-        <br>
+        <button type="button" (click)="addNewRow()" class = "button primary">Add new intent Phrase</button>
+
         <div formArrayName="userSays">
           <div *ngFor="let itemrow of rForm.controls.userSays.controls; let i=index" [formGroupName]="i">
             <div class="form-group col-md-8">
               <label>Intent phrase #{{ i + 1 }}</label>
-              <input type="text" formControlName="data" class="form-control">
+              <!-- <input type="text" formControlName="data" class="form-control"> -->
+              <div class="input-group">
+                
+                <input class="input-group-field" type="text" formControlName="data" placeholder="Full name">
+                <span *ngIf = "i != 0 " class="input-group-label">
+                  <!-- <i class="fa fa-user"></i> -->
+                  <button *ngIf="rForm.controls.userSays.controls.length > 1" (click)="deleteRow(i)" class="button alert">Delete</button>
+                </span>
+              </div>
             </div>
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
               <button *ngIf="rForm.controls.userSays.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger">Delete</button>
-            </div>
+            </div> -->
           </div>
         </div>
         <!--test-->

@@ -2,9 +2,12 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs/Observable";
+import {environment} from "../environments/environment"
 
 @Injectable()
 export class IntentService {
+  
+
   constructor(private http: HttpClient) {}
 
   createIntent(input) {
@@ -36,7 +39,7 @@ export class IntentService {
         variables: input
       }
     };
-    return this.http.post("http://aicstage.accionlabs.com/api/accion", body);
+    return this.http.post(environment.intentApiPath, body);
   }
 
   indexIntent(input) {
@@ -49,6 +52,6 @@ export class IntentService {
       }`,
       variables: input
     };
-    return this.http.post("http://localhost:3001/graphql", body);
+    return this.http.post(environment.graphqlChatBotPath, body);
   }
 }
