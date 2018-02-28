@@ -9,6 +9,7 @@ import {
 import "rxjs/add/operator/do";
 import { Observable } from "rxjs/Observable";
 import { Injectable } from "@angular/core";
+import { config } from "./config/config";
 
 @Injectable()
 export class JWTInterceptor implements HttpInterceptor {
@@ -20,22 +21,13 @@ export class JWTInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     this.token = localStorage.getItem("code");
-
+    console.log(config);
     req = req.clone({
       setHeaders: {
-        "x-authpa-token": `a520cd5827f64997b7710da2ae2dfa80`,
+        "x-authpa-token": config["x-authpa-token"],
         "Content-Type": "application/json"
       }
     });
     return next.handle(req);
-    // .do(event => {
-    // 	if (event instanceof HttpResponse) {
-    // 		// If session out it will redirect it to login
-    // 		if (event.body.responseCode === 9) {
-    // 			this.router.navigate(["/login"]);
-    // 			localStorage.clear();
-    // 		}
-    // 	}
-    // });
   }
 }
