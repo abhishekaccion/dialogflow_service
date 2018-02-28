@@ -60,7 +60,11 @@ export class IntentComponent {
     this._intentService.createIntent(input).subscribe(
       res => {
         //final response
-        alert("success");
+        console.log("In success", res);
+        if (res && res["errors"]) {
+          alert(res["errors"][0].message);
+          return;
+        }
 
         const obj = {
           input: {
@@ -76,15 +80,19 @@ export class IntentComponent {
         this._intentService.indexIntent(obj).subscribe(
           res => {
             console.log(res);
+            if (res && res["data"]) {
+              alert("Intent Added Successfully!");
+            }
           },
           err => {
             console.log(err);
+            alert("Error while adding speech!");
           }
         );
       },
       err => {
         //final errponse
-        console.log(err);
+        console.log("In error", err);
         alert(err.message);
       }
     );

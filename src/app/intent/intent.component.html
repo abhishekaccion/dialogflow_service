@@ -9,36 +9,25 @@
         <label>Output speech
           <input type="text" formControlName="OutputSpeech">
         </label>
-        <!-- <label>Intent phrases
-          <input type="text" formControlName="data">
-        </label> -->
-        <!-- 
-        <label for="validate">Minimum of 3 Characters</label>
-        <input type="checkbox" name="validate" formControlName="validate" value="1"> On -->
 
-        <!--test-->
-        <button type="button" (click)="addNewRow()" class = "button primary">Add new intent Phrase</button>
 
         <div formArrayName="userSays">
           <div *ngFor="let itemrow of rForm.controls.userSays.controls; let i=index" [formGroupName]="i">
             <div class="form-group col-md-8">
               <label>Intent phrase #{{ i + 1 }}</label>
-              <!-- <input type="text" formControlName="data" class="form-control"> -->
               <div class="input-group">
-                
                 <input class="input-group-field" type="text" formControlName="data" placeholder="Full name">
-                <span *ngIf = "i != 0 " class="input-group-label">
-                  <!-- <i class="fa fa-user"></i> -->
+                <span *ngIf="i != 0 " class="input-group-label">
                   <button *ngIf="rForm.controls.userSays.controls.length > 1" (click)="deleteRow(i)" class="button alert">Delete</button>
                 </span>
               </div>
             </div>
-            <!-- <div class="col-md-4">
-              <button *ngIf="rForm.controls.userSays.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger">Delete</button>
-            </div> -->
+
           </div>
         </div>
-        <!--test-->
+
+        <button type="button" (click)="addNewRow()" class="button primary">Add new intent Phrase</button>
+
 
         <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
       </div>
