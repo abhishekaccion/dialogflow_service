@@ -6,6 +6,5 @@
 export const environment = {
   production: false,
   intentApiPath: "http://aicstage.accionlabs.com/api/accion",
-  graphqlChatBotPath: "http://localhost:3001/graphql"
-
+  graphqlChatBotPath: "http://localhost:3002/graphql"
 };
